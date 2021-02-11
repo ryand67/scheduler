@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from '../styles/Home.module.css'
 import Datepicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
@@ -10,8 +10,29 @@ export default function Home() {
 
   const [startDate, setStartDate] = useState(new Date());
   const [weekdayCheck, setWeekdayCheck] = useState(false);
+  const [currentBookings, setCurrentBookings] = useState();
+
+  const excludedDateArray = [];
   
   //State functions
+  useEffect(() => {
+    axios.get('/api/read')
+    .then(res => {
+      setCurrentBookings(res.data);
+    }).then(() => {
+      if(currentBookings) {
+        currentBookings.forEach(item => {
+          excludedDateArray.push(new Date(item.booking));
+        })
+        console.log(excludedDateArray);
+      }
+    })
+  }, [])
+
+  const handleDateChange = (date) => {
+    setStartDate(date);
+  }
+
   const enableDisableWeekends = () => {
     setWeekdayCheck(!weekdayCheck);
   }
@@ -28,8 +49,9 @@ export default function Home() {
 
   //Booking functions
   const handleBook = () => {
+    const formattedDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
     axios.post('/api/write', {
-      booking: startDate
+      booking: formattedDate
     }).then(res => {
       console.log(res);
     })
@@ -40,6 +62,7 @@ export default function Home() {
     .then(res => {
       console.log(res);
     })
+    console.log(startDate.getDate());
   }
 
   return (
@@ -47,7 +70,7 @@ export default function Home() {
       <Head>
         <title>Scheduling App</title>
         <link rel="icon" href="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"></link>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossOrigin="anonymous"></link>
       </Head>
 
       <h1 className={styles.header}>Scheduling App <img src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png" className={styles.icon}></img></h1>
@@ -57,9 +80,9 @@ export default function Home() {
         minDate={new Date()}
         inline
         selected={startDate}
-        onChange={date => setStartDate(date)}
+        onChange={date => handleDateChange(date)}
         filterDate={isWeekday}
-        // excludeDates={[new Date(), subDays(new Date(), 1)]}
+        excludeDates={excludedDateArray}
       />
     </div>
     <div className={styles.toggleDiv}>
