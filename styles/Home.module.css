@@ -9,4 +9,12 @@
 
 .header {
   color: rgb(66, 66, 66);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  padding-left: 15px;
+  height: 45px;
 }
