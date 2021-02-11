@@ -15,6 +15,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <h1 className={styles.header}>Scheduling App</h1>
+
       <Datepicker
         minDate={new Date()}
         inline
