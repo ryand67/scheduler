@@ -35,6 +35,7 @@ export default function Home() {
 
       <h1 className={styles.header}>Scheduling App <img src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png" className={styles.icon}></img></h1>
 
+    <div className={styles.datepicker}>
       <Datepicker
         minDate={new Date()}
         inline
@@ -43,7 +44,8 @@ export default function Home() {
         filterDate={isWeekday}
         // excludeDates={[new Date(), subDays(new Date(), 1)]}
       />
-      <button onClick={enableDisableWeekends} type="button" class="btn btn-primary">Disable/Enable Weekends</button>
+    </div>
+      <button onClick={enableDisableWeekends} type="button" class="btn btn-primary">{weekdayCheck ? "Enable" : "Disable"} Weekends</button>
     </div>
   )
 }
