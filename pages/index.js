@@ -45,7 +45,8 @@ export default function Home() {
         // excludeDates={[new Date(), subDays(new Date(), 1)]}
       />
     </div>
-      <button onClick={enableDisableWeekends} type="button" class="btn btn-primary">{weekdayCheck ? "Enable" : "Disable"} Weekends</button>
+      <button onClick={enableDisableWeekends} type="button" className={`btn btn-primary ${styles.optionButton}`}>{weekdayCheck ? "Enable" : "Disable"} Weekends</button>
+      <button type="button" className={`btn btn-primary ${styles.optionButton}`}>Book Date</button>
     </div>
   )
 }

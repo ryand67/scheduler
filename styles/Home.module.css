@@ -22,3 +22,7 @@
   padding-left: 15px;
   height: 45px;
 }
+
+.optionButton {
+  margin: .5em 0;
+}
