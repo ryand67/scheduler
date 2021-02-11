@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css'
 import Datepicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
 import { addDays, setHours, setMinutes, getDay, format } from "date-fns";
+import axios from 'axios';
 
 export default function Home() {
 
@@ -25,6 +26,22 @@ export default function Home() {
     }
   };
 
+  //Booking functions
+  const handleBook = () => {
+    axios.post('/api/write', {
+      booking: startDate
+    }).then(res => {
+      console.log(res);
+    })
+  }
+
+  const getBookings = () => {
+    axios.get('/api/read')
+    .then(res => {
+      console.log(res);
+    })
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -45,8 +62,13 @@ export default function Home() {
         // excludeDates={[new Date(), subDays(new Date(), 1)]}
       />
     </div>
+    <div className={styles.toggleDiv}>
       <button onClick={enableDisableWeekends} type="button" className={`btn btn-primary ${styles.optionButton}`}>{weekdayCheck ? "Enable" : "Disable"} Weekends</button>
-      <button type="button" className={`btn btn-primary ${styles.optionButton}`}>Book Date</button>
+    </div>
+    <div className={styles.bottomDiv}>
+      <button onClick={handleBook} type="button" className={`btn btn-primary ${styles.optionButton}`}>Book Date</button>
+      <button onClick={getBookings} type="button" className={`btn btn-primary ${styles.optionButton}`}>View Booked Dates</button>
+    </div>
     </div>
   )
 }

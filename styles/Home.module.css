@@ -15,7 +15,8 @@
 }
 
 .datepicker {
-  margin: 1em 0;
+  margin: .5em 0;
+  margin-top: .75em;
 }
 
 .icon {
@@ -25,4 +26,24 @@
 
 .optionButton {
   margin: .5em 0;
+}
+
+.toggleDiv {
+  display: flex;
+  justify-content: center;
+  margin: 1em 0;
+}
+
+.toggleDiv button {
+  margin: 0 1em;
+}
+
+.bottomDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottomDiv button {
+  margin: 0 1em;
 }
