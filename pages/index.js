@@ -69,6 +69,7 @@ export default function Home() {
         name: bookName
       }).then(res => {
         console.log(res);
+        document.getElementById('nameInput').value = '';
       })
     } else {
       setErrorModalFlag(true);
@@ -102,7 +103,7 @@ export default function Home() {
 
       <div className={screenWidth > 900 ? "input-group mb-3 w-25" : "input-group mb-3 w-75"}>
         <span className="input-group-text" id="inputGroup-sizing-default">Name</span>
-        <input onChange={handleNameChange} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+        <input onChange={handleNameChange} id='nameInput' type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
       </div>
 
         <div className={styles.toggleDiv}>
