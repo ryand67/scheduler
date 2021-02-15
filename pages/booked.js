@@ -24,6 +24,7 @@ export default function booked() {
         axios.delete(`/api/delete?id=${id}`)
         .then(res => {
             console.log(res);
+            // getAndSetBookings();
         })
     }
 
@@ -50,7 +51,7 @@ export default function booked() {
                     </tr>
                 </thead>
                 <tbody>
-                    {bookings ? bookings.map((item, i) => {
+                    {bookings.map((item, i) => {
                         console.log(item)
                         return (
                             <tr key={i}>
@@ -60,7 +61,7 @@ export default function booked() {
                                 <td><button onClick={() => handleDelete(item._id)} type="button" className="btn btn-danger">DELETE</button></td>
                             </tr>
                         )
-                    }) : <></>}
+                    })}
                 </tbody>
             </table>
         </div>
