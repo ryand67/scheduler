@@ -54,8 +54,11 @@ export default function Home() {
   //Booking functions
   const handleBook = () => {
     const formattedDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+    const today = new Date();
+    const bookedOnDate = new Date(today.getFullYear(), today.getMonth(), today.getDate())
     axios.post('/api/write', {
-      booking: formattedDate
+      booking: formattedDate,
+      bookedOn: bookedOnDate
     }).then(res => {
       console.log(res);
     })

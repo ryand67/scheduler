@@ -19,6 +19,8 @@ export default function booked() {
             })
     }
 
+    const handleGoHome = () => window.location.replace('/');
+
     return (
         <div className={styles.container}>
             <Head>
@@ -33,15 +35,15 @@ export default function booked() {
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
+                        <th scope="col">Booked Date</th>
+                        <th scope="col">Date Booked</th>
                         <th scope="col">Handle</th>
                     </tr>
                 </thead>
                 <tbody>
                     {bookings ? bookings.map((item, i) => {
                         return (
-                            <tr>
+                            <tr key={i}>
                                 <th scope="row">{i + 1}</th>
                                 <td>Mark</td>
                                 <td>Otto</td>
@@ -51,6 +53,7 @@ export default function booked() {
                     }) : <></>}
                 </tbody>
             </table>
+            <button onClick={handleGoHome} type="button" className={`btn btn-primary ${styles.optionButton}`}>Back to Home</button>
         </div>
     )
 }
