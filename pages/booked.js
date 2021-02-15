@@ -23,8 +23,8 @@ export default function booked() {
     const handleDelete = (id) => {
         axios.delete(`/api/delete?id=${id}`)
         .then(res => {
-            console.log(res);
-            // getAndSetBookings();
+            // console.log(res);
+            getAndSetBookings();
         })
     }
 
@@ -52,7 +52,7 @@ export default function booked() {
                 </thead>
                 <tbody>
                     {bookings.map((item, i) => {
-                        console.log(item)
+                        // console.log(item)
                         return (
                             <tr key={i}>
                                 <th scope="row">{i + 1}</th>
