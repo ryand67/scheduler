@@ -16,6 +16,7 @@ export default function Home() {
   const [errorModalFlag, setErrorModalFlag] = useState(false);
   const [bookName, setBookName] = useState('');
   const [screenWidth, setScreenWidth] = useState();
+  const [allDay, setAllDay] = useState(true);
 
   const excludedDateArray = [];
 
@@ -47,6 +48,8 @@ export default function Home() {
 
   const handleNameChange = (e) => setBookName(e.target.value);
 
+  const handleAllDay = () => setAllDay(!allDay);
+
   //Date Functions
   const isWeekday = (date) => {
     const day = getDay(date);
@@ -59,7 +62,7 @@ export default function Home() {
 
   //Booking functions
   const handleBook = () => {
-    if(bookName !== '') {
+    if (bookName !== '') {
       const formattedDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
       const today = new Date();
       const bookedOnDate = new Date(today.getFullYear(), today.getMonth(), today.getDate())
@@ -68,7 +71,6 @@ export default function Home() {
         bookedOn: bookedOnDate,
         name: bookName
       }).then(res => {
-        console.log(res);
         document.getElementById('nameInput').value = '';
       })
     } else {
@@ -92,12 +94,14 @@ export default function Home() {
 
       <div className={styles.datepicker}>
         <Datepicker
+          showTimeSelect={allDay}
           minDate={new Date()}
           inline
           selected={startDate}
           onChange={date => handleDateChange(date)}
           filterDate={isWeekday}
           excludeDates={excludedDateArray}
+          showTimeSelect={allDay}
         />
       </div>
 
@@ -106,13 +110,19 @@ export default function Home() {
         <input onChange={handleNameChange} id='nameInput' type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
       </div>
 
-        <div className={styles.toggleDiv}>
-          <button onClick={enableDisableWeekends} type="button" className={`btn btn-primary ${styles.optionButton}`}>{weekdayCheck ? "Enable" : "Disable"} Weekends</button>
-        </div>
-        <div className={styles.bottomDiv}>
-          <button onClick={handleBook} type="button" className={`btn btn-primary ${styles.optionButton}`}>Book Date</button>
-          <button onClick={handleBookingButton} type="button" className={`btn btn-primary ${styles.optionButton}`}>View Booked Dates</button>
+      <div className={styles.toggleDiv}>
+        <button onClick={enableDisableWeekends} type="button" className={`btn btn-primary ${styles.optionButton}`}>{weekdayCheck ? "Enable" : "Disable"} Weekends</button>
+        <div className="form-check">
+          <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" onChange={handleAllDay}/>
+            <label className="form-check-label" htmlFor="flexCheckDefault" >
+            All Day?
+          </label>
         </div>
       </div>
+      <div className={styles.bottomDiv}>
+        <button onClick={handleBook} type="button" className={`btn btn-primary ${styles.optionButton}`}>Book Date</button>
+        <button onClick={handleBookingButton} type="button" className={`btn btn-primary ${styles.optionButton}`}>View Booked Dates</button>
+      </div>
+    </div>
   )
 }
