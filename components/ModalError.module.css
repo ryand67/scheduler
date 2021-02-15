@@ -34,3 +34,17 @@
 .errorText {
     font-size: 1.5em;
 }
+
+@media only screen and (max-width: 900px) {
+    .modalBox {
+        width: 60%;
+    }
+
+    .errorText {
+        font-size: 1.2em;
+    }
+
+    .exitButton {
+        font-size: 1.5em;
+    }
+}
