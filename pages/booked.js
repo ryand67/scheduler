@@ -15,11 +15,17 @@ export default function booked() {
         axios.get('/api/read')
             .then(res => {
                 setBookings(res.data)
-                console.log(res.data)
             })
     }
 
     const handleGoHome = () => window.location.replace('/');
+
+    const handleDelete = (id) => {
+        axios.delete(`/api/delete?id=${id}`)
+        .then(res => {
+            console.log(res);
+        })
+    }
 
     return (
         <div className={styles.container}>
@@ -31,29 +37,32 @@ export default function booked() {
                 <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet" />
             </Head>
 
+            <h1 className={styles.header}>Booked Dates</h1>
+            <button onClick={handleGoHome} type="button" className={`btn btn-primary ${styles.homeButtonBookedPage}`}>Back to Home</button>
+
             <table className={`table ${styles.tableCSS}`}>
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Booked Date</th>
                         <th scope="col">Date Booked</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     {bookings ? bookings.map((item, i) => {
+                        console.log(item)
                         return (
                             <tr key={i}>
                                 <th scope="row">{i + 1}</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <td>{item.booking}</td>
+                                <td>{item.bookedOn}</td>
+                                <td><button onClick={() => handleDelete(item._id)} type="button" className="btn btn-danger">DELETE</button></td>
                             </tr>
                         )
                     }) : <></>}
                 </tbody>
             </table>
-            <button onClick={handleGoHome} type="button" className={`btn btn-primary ${styles.optionButton}`}>Back to Home</button>
         </div>
     )
 }
