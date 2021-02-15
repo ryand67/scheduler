@@ -12,6 +12,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Yellowtail', cursive;
 }
 
 .datepicker {
@@ -46,4 +47,9 @@
 
 .bottomDiv button {
   margin: 0 1em;
+}
+
+.tableCSS {
+  background-color: white;
+  border: 3px solid rgb(41, 41, 41);
 }

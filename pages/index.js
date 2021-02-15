@@ -37,6 +37,10 @@ export default function Home() {
     setWeekdayCheck(!weekdayCheck);
   }
 
+  const handleBookingButton = () => {
+    window.location.replace('/booked');
+  }
+
   //Date Functions
   const isWeekday = (date) => {
     const day = getDay(date);
@@ -57,20 +61,14 @@ export default function Home() {
     })
   }
 
-  const getBookings = () => {
-    axios.get('/api/read')
-    .then(res => {
-      console.log(res);
-    })
-    console.log(startDate.getDate());
-  }
-
   return (
     <div className={styles.container}>
       <Head>
         <title>Scheduling App</title>
         <link rel="icon" href="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossOrigin="anonymous"></link>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet" />
       </Head>
 
       <h1 className={styles.header}>Scheduling App <img src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png" className={styles.icon}></img></h1>
@@ -90,7 +88,7 @@ export default function Home() {
     </div>
     <div className={styles.bottomDiv}>
       <button onClick={handleBook} type="button" className={`btn btn-primary ${styles.optionButton}`}>Book Date</button>
-      <button onClick={getBookings} type="button" className={`btn btn-primary ${styles.optionButton}`}>View Booked Dates</button>
+      <button onClick={handleBookingButton} type="button" className={`btn btn-primary ${styles.optionButton}`}>View Booked Dates</button>
     </div>
     </div>
   )
