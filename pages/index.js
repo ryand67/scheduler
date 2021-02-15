@@ -15,11 +15,17 @@ export default function Home() {
   const [currentBookings, setCurrentBookings] = useState();
   const [errorModalFlag, setErrorModalFlag] = useState(false);
   const [bookName, setBookName] = useState('');
+  const [screenWidth, setScreenWidth] = useState();
 
   const excludedDateArray = [];
 
   //State functions
   useEffect(() => {
+    //Set width state and adds even listener
+    setScreenWidth(window.innerWidth);
+    window.addEventListener('resize', () => setScreenWidth(window.innerWidth))
+
+    //Grabs available bookings
     axios.get('/api/read')
       .then(res => {
         setCurrentBookings(res.data);
@@ -94,7 +100,7 @@ export default function Home() {
         />
       </div>
 
-      <div className="input-group mb-3 w-25">
+      <div className={screenWidth > 900 ? "input-group mb-3 w-25" : "input-group mb-3 w-75"}>
         <span className="input-group-text" id="inputGroup-sizing-default">Name</span>
         <input onChange={handleNameChange} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
       </div>
