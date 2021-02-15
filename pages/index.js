@@ -102,6 +102,8 @@ export default function Home() {
           filterDate={isWeekday}
           excludeDates={excludedDateArray}
           showTimeSelect={allDay}
+          minTime={setHours(setMinutes(new Date(), new Date().getMinutes()), new Date().getHours())}
+          maxTime={setHours(setMinutes(new Date(), 30), 23)}
         />
       </div>
 
