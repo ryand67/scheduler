@@ -48,6 +48,7 @@ export default function booked() {
                         <th scope="col">Name</th>
                         <th scope="col">Booked Date</th>
                         <th scope="col">Date Booked</th>
+                        <th scope="col">All Day</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
@@ -60,6 +61,7 @@ export default function booked() {
                                 <td>{item.name}</td>
                                 <td>{item.booking}</td>
                                 <td>{item.bookedOn}</td>
+                                <td>{item.allDay ? 'Yes' : 'No'}</td>
                                 <td><button onClick={() => handleDelete(item._id)} type="button" className="btn btn-danger">DELETE</button></td>
                             </tr>
                         )

@@ -69,7 +69,8 @@ export default function Home() {
       axios.post('/api/write', {
         booking: formattedDate,
         bookedOn: bookedOnDate,
-        name: bookName
+        name: bookName,
+        allDay: allDay
       }).then(res => {
         document.getElementById('nameInput').value = '';
       })
