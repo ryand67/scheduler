@@ -41,10 +41,11 @@ export default function booked() {
             <h1 className={styles.header}>Booked Dates</h1>
             <button onClick={handleGoHome} type="button" className={`btn btn-primary ${styles.homeButtonBookedPage}`}>Back to Home</button>
 
-            <table className={`table ${styles.tableCSS}`}>
+            <table className={`table w-75 ${styles.tableCSS}`}>
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Booked Date</th>
                         <th scope="col">Date Booked</th>
                         <th scope="col">Delete</th>
@@ -56,6 +57,7 @@ export default function booked() {
                         return (
                             <tr key={i}>
                                 <th scope="row">{i + 1}</th>
+                                <td>{item.name}</td>
                                 <td>{item.booking}</td>
                                 <td>{item.bookedOn}</td>
                                 <td><button onClick={() => handleDelete(item._id)} type="button" className="btn btn-danger">DELETE</button></td>
