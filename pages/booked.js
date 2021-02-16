@@ -11,6 +11,33 @@ export default function booked() {
         getAndSetBookings();
     }, [])
 
+    const formatDate = (date, allDay) => {
+        const holder = new Date(date).toString().split(' ');
+
+        let formattedDate = '';
+
+        if(!allDay) {
+            for (let i = 0; i < 5; i++) {
+                if(i === 4) {
+                    let temp = holder[i].split(':');
+                    let hour = parseInt(temp[0]);
+                    hour = hour > 12 ? hour - 12 : hour;
+                    const amOrPm = hour > 12 ? 'AM' : 'PM';
+                    temp[0] = hour;
+                    formattedDate += temp.join(':') + amOrPm;
+                } else {
+                    formattedDate += `${holder[i]} `;
+                }
+            }
+        } else {
+            for (let i = 0; i < 4; i++) {
+                formattedDate += holder[i] + ' ';
+            }
+        }
+        
+        return formattedDate;
+    }
+
     const getAndSetBookings = () => {
         axios.get('/api/read')
             .then(res => {
@@ -47,20 +74,23 @@ export default function booked() {
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Booked Date</th>
-                        <th scope="col">Date Booked</th>
+                        <th scope="col">Booked On</th>
                         <th scope="col">All Day</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     {bookings.map((item, i) => {
-                        // console.log(item)
+                        const formattedDate = formatDate(item.booking, item.allDay);
+
+                        const formattedBookedOn = formatDate(item.bookedOn, true)
+
                         return (
                             <tr key={i}>
                                 <th scope="row">{i + 1}</th>
                                 <td>{item.name}</td>
-                                <td>{item.booking}</td>
-                                <td>{item.bookedOn}</td>
+                                <td>{formattedDate}</td>
+                                <td>{formattedBookedOn}</td>
                                 <td>{item.allDay ? 'Yes' : 'No'}</td>
                                 <td><button onClick={() => handleDelete(item._id)} type="button" className="btn btn-danger">DELETE</button></td>
                             </tr>

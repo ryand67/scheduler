@@ -16,7 +16,7 @@ export default function Home() {
   const [errorModalFlag, setErrorModalFlag] = useState(false);
   const [bookName, setBookName] = useState('');
   const [screenWidth, setScreenWidth] = useState();
-  const [allDay, setAllDay] = useState(true);
+  const [allDay, setAllDay] = useState(false);
 
   const excludedDateArray = [];
 
@@ -63,7 +63,8 @@ export default function Home() {
   //Booking functions
   const handleBook = () => {
     if (bookName !== '') {
-      const formattedDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+      // const formattedDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+      const formattedDate = new Date(startDate);
       const today = new Date();
       const bookedOnDate = new Date(today.getFullYear(), today.getMonth(), today.getDate())
       axios.post('/api/write', {
@@ -102,7 +103,7 @@ export default function Home() {
           onChange={date => handleDateChange(date)}
           filterDate={isWeekday}
           excludeDates={excludedDateArray}
-          showTimeSelect={allDay}
+          showTimeSelect={!allDay}
           minTime={setHours(setMinutes(new Date(), new Date().getMinutes()), new Date().getHours())}
           maxTime={setHours(setMinutes(new Date(), 30), 23)}
         />
