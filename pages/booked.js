@@ -68,7 +68,7 @@ export default function booked() {
             <h1 className={styles.header}>Booked Dates</h1>
             <button onClick={handleGoHome} type="button" className={`btn btn-primary ${styles.homeButtonBookedPage}`}>Back to Home</button>
 
-            <table className={`table w-75 ${styles.tableCSS}`}>
+            <table className={`table w-75 ${styles.tableCSS} table-responsive`}>
                 <thead>
                     <tr>
                         <th scope="col">#</th>
