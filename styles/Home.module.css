@@ -64,4 +64,8 @@
   .tableCSS {
     font-size: .8em;
   }
+
+  .container {
+    min-height: 80vh;
+  }
 }
