@@ -52,10 +52,16 @@
 .tableCSS {
   background-color: rgb(245, 245, 245);
   border: 3px solid rgb(66, 66, 66);
-  overflow: scroll;
+  overflow:visible;
 }
 
 .homeButtonBookedPage {
   margin: .5em 0;
   margin-bottom: 1.5em;
+}
+
+@media only screen and (max-width: 500px) {
+  .tableCSS {
+    font-size: .8em;
+  }
 }
