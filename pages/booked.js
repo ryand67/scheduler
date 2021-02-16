@@ -25,6 +25,7 @@ export default function booked() {
                     hour = hour > 12 ? hour - 12 : hour;
                     const amOrPm = hour > 12 ? 'AM' : 'PM';
                     temp[0] = hour;
+                    temp.pop();
                     formattedDate += temp.join(':') + amOrPm;
                 } else {
                     formattedDate += `${holder[i]} `;

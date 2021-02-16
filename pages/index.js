@@ -19,7 +19,7 @@ export default function Home() {
   const [screenWidth, setScreenWidth] = useState();
   const [allDay, setAllDay] = useState(false);
 
-  const excludedDateArray = [];
+  let excludedDateArray = [];
 
   //State functions
   useEffect(() => {
@@ -35,11 +35,12 @@ export default function Home() {
         if (currentBookings) {
           currentBookings.forEach(item => {
             excludedDateArray.push(new Date(item.booking));
+            setCurrentBookings(excludedDateArray);
           })
-          console.log(excludedDateArray);
         }
       })
   }, [])
+
 
   const handleDateChange = (date) => setStartDate(date);
 
@@ -107,7 +108,7 @@ export default function Home() {
           filterDate={isWeekday}
           excludeDates={excludedDateArray}
           showTimeSelect={!allDay}
-          minTime={setHours(setMinutes(new Date(), new Date().getMinutes()), new Date().getHours())}
+          minTime={setHours(setMinutes(new Date(), 0), 0)}
           maxTime={setHours(setMinutes(new Date(), 30), 23)}
         />
       </div>
