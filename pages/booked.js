@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import axios from 'axios'
+import Nav from '../components/Nav/Nav';
 
 export default function booked() {
 
@@ -64,6 +65,8 @@ export default function booked() {
                 <link rel="preconnect" href="https://fonts.gstatic.com" />
                 <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet" />
             </Head>
+
+            <Nav />
 
             <h1 className={styles.header}>Booked Dates</h1>
             <button onClick={handleGoHome} type="button" className={`btn btn-primary ${styles.homeButtonBookedPage}`}>Back to Home</button>

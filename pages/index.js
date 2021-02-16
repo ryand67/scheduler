@@ -6,6 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { addDays, setHours, setMinutes, getDay, format } from "date-fns";
 import axios from 'axios';
 import ModalError from '../components/ModalError';
+import Nav from '../components/Nav/Nav';
 
 export default function Home() {
 
@@ -90,9 +91,11 @@ export default function Home() {
         <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet" />
       </Head>
 
+      <Nav />
+
       {errorModalFlag ? <ModalError handleClose={setErrorModalFlag} /> : <></>}
 
-      <h1 className={styles.header}>Scheduling App <img src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png" className={styles.icon}></img></h1>
+      <h1 className={styles.header}>Scheduling App</h1>
 
       <div className={styles.datepicker}>
         <Datepicker

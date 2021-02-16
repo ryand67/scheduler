@@ -1,0 +1,14 @@
+.nav {
+    width: 50px;
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    transform: scale(.9);
+    transition: .5s ease-in-out;
+    cursor: pointer;
+}
+
+.nav:hover {
+    transform: scale(1);
+    transform: rotate(-15deg);
+}
